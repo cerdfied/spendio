@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./screens/auth/Login";
 import RegisterScreen from "./screens/auth/Register";
+import "./lib/firebase";
 
 const Stack = createStackNavigator();
 export default function App() {

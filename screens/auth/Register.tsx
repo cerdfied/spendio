@@ -43,14 +43,11 @@ export default function Register({ navigation }) {
           onChangeText={(text) => setConfirmPassword(text)}
         />
       </View>
-      <TouchableOpacity>
-        <Text style={styles.smallText}>Forgot Password?</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={onRegister}>
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text style={styles.smallText}>Don't have an account?</Text>
+        <Text style={styles.smallText}>Already have an account?</Text>
       </TouchableOpacity>
     </View>
   );
