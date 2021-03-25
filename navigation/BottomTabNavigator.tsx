@@ -3,8 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
 import Home from '../screens/Home';
 import Settings from '../screens/Settings';
 import { BottomTabParamList, HomeParamList, SettingsParamList } from '../types';
@@ -12,12 +10,11 @@ import { BottomTabParamList, HomeParamList, SettingsParamList } from '../types';
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint, showLabel: false }}>
+      tabBarOptions={{ activeTintColor: '#ccc', showLabel: false }}>
       <BottomTab.Screen
         name="Home"
         component={HomeNavigator}
