@@ -1,16 +1,24 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginScreen from "./components/auth/Login";
+import LoginScreen from "./screens/auth/Login";
+import RegisterScreen from "./screens/auth/Register";
 
 const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Landing">
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          cardStyle: {
+            backgroundColor: "#ffffff",
+          },
+        }}
+      >
         <Stack.Screen
-          name="Landing"
-          component={LoginScreen}
+          name="Login"
+          component={RegisterScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
