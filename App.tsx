@@ -1,21 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import LoginScreen from "./components/auth/Login";
 
-import useCachedResources from './hooks/useCachedResources';
-import Navigation from './navigation';
-
+const Stack = createStackNavigator();
 export default function App() {
-  const isLoadingComplete = useCachedResources();
-
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <Navigation />
-        <StatusBar />
-      </SafeAreaProvider>
-    );
-  }
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Landing">
+        <Stack.Screen
+          name="Landing"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
