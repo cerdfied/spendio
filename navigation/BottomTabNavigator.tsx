@@ -1,42 +1,56 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
-
-import Home from '../screens/Home';
-import Settings from '../screens/Settings';
-import { BottomTabParamList, HomeParamList, SettingsParamList } from '../types';
+import * as React from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import {
+  BottomTabParamList,
+  HomeParamList,
+  SettingsParamList,
+} from "../types/types";
+import Home from "../screens/Home";
+import Settings from "../screens/Settings";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
-
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: '#ccc', showLabel: false }}>
+      tabBarOptions={{
+        activeTintColor: "black",
+        showLabel: false,
+        style: {
+          backgroundColor: "white",
+        },
+      }}
+    >
       <BottomTab.Screen
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="home-outline" color={color} />,
-          
+          tabBarIcon: () => <TabBarIcon name="home-outline" color="black" />,
         }}
       />
       <BottomTab.Screen
         name="Settings"
         component={SettingsNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="settings-helper" color={color} />,
+          tabBarIcon: () => <TabBarIcon name="settings-helper" color="black" />,
         }}
       />
     </BottomTab.Navigator>
   );
 }
 
-function TabBarIcon(props: { name: React.ComponentProps<typeof MaterialCommunityIcons>['name']; color: string }) {
-  const style  = props.name === 'home-outline' ? {marginBottom: -15, marginRight: 30} : {marginBottom: 10, marginLeft: 30}
-  console.log(props)
+function TabBarIcon(props: {
+  name: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+  color: string;
+}) {
+  const style =
+    props.name === "home-outline"
+      ? { marginBottom: -15, marginRight: 30 }
+      : { marginBottom: 10, marginLeft: 30 };
+  console.log(props);
   return <MaterialCommunityIcons size={30} style={style} {...props} />;
 }
 
@@ -48,7 +62,7 @@ function HomeNavigator() {
       <HomeStack.Screen
         name="Home"
         component={Home}
-        options={{ headerTitle: '' }}
+        options={{ headerTitle: "" }}
       />
     </HomeStack.Navigator>
   );
@@ -62,7 +76,7 @@ function SettingsNavigator() {
       <SettingsStack.Screen
         name="Settings"
         component={Settings}
-        options={{ headerTitle: '' }}
+        options={{ headerTitle: "" }}
       />
     </SettingsStack.Navigator>
   );

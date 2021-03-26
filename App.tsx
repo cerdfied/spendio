@@ -7,6 +7,8 @@ import RegisterScreen from "./screens/auth/Register";
 import HomeScreen from "./screens/Home";
 import firebase from "firebase";
 import { View, Text } from "react-native";
+import Navigation from "./navigation";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -30,25 +32,14 @@ export default function App() {
         <Text> Loading </Text>
       </View>
     );
+
   if (loggedIn)
     return (
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{
-            cardStyle: {
-              backgroundColor: "#ffffff",
-            },
-          }}
-        >
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <Navigation />
+      </SafeAreaProvider>
     );
+
   return (
     <NavigationContainer>
       <Stack.Navigator
