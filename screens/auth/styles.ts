@@ -28,6 +28,10 @@ export default StyleSheet.create({
     color: "black",
     fontSize: 11,
   },
+  errorText: {
+    color: "red",
+    fontSize: 11,
+  },
   button: {
     width: "40%",
     backgroundColor: "black",

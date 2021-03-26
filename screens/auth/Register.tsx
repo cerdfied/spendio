@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Image, Text, TextInput, TouchableOpacity } from "react-native";
 import styles from "./styles";
+import firebase from "firebase";
 
 export default function Register({ navigation }) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
   function onRegister() {
-    console.log(email, password, confirmPassword);
+    if (password !== confirmPassword) {
+      return setError("Please ensure passwords match");
+    }
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   }
 
   return (
@@ -43,10 +57,11 @@ export default function Register({ navigation }) {
           onChangeText={(text) => setConfirmPassword(text)}
         />
       </View>
+      {error !== "" && <Text style={styles.errorText}> {error} </Text>}
       <TouchableOpacity style={styles.button} onPress={onRegister}>
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text style={styles.smallText}>Already have an account?</Text>
       </TouchableOpacity>
     </View>

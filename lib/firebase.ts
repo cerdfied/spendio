@@ -8,7 +8,8 @@ import {
   APP_ID,
   MEASUREMENT_ID,
 } from "@env";
-console.log("!!!!", API_KEY);
+
+console.log("!!!", API_KEY);
 
 const firebaseConfig = {
   apiKey: API_KEY,
@@ -22,7 +23,6 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
 } else {
   firebase.app();
 }
